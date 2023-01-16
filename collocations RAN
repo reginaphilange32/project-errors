@@ -1,0 +1,4 @@
+ text8.collocations()
+ lemmatized_words = [lemmatizer.lemmatize(word) for word in text8]
+ new_text = nltk.Text(lemmatized_words)
+ new_text.collocations()
