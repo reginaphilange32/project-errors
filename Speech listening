@@ -1,0 +1,14 @@
+!pip install SpeechRecognition
+import speech_recognition as sr
+
+r=sr.Recognizer() 
+with sr.AudioFile('filepath') as source:
+  audio_text=r.listen(source)
+  try:
+     #text=r.recognize_google(audio_text, language='hi-IN')
+     text=r.recognize_google(audio_text)
+     print('converting audio to text')
+  except: 
+      print('sorry cannot convert') 
+print(text) 
+
