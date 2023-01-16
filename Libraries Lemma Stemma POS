@@ -1,0 +1,60 @@
+!pip install nltk
+import nltk
+
+from nltk.tag import pos_tag_sents
+from nltk.stem.wordnet import WordNetLemmatizer #root word
+from nltk.stem.snowball import PorterStemmer
+from nltk.tokenize import sent_tokenize
+
+from nltk import sent_tokenize
+from nltk import word_tokenize
+
+nltk.download('omw-1.4')
+nltk.download('punkt')
+nltk.download('wordnet')
+
+stemmer = PorterStemmer()
+lemma = WordNetLemmatizer()
+
+data=[]
+text = "I am reading the text book. He is playing the guitar. They are dancing" 
+
+#Required word token
+#Stemming
+def stemm_it(text):
+  words=nltk.word_tokenize(text)
+  data = [stemmer.stem(word) for word in words]
+  print(data)
+
+print('stemming data: ', stemm_it(text))
+
+#lemmatizing 
+#part of speech
+
+def lemmatize(text):
+  words=nltk.word_tokenize(text)
+  data = [lemma.lemmatize(word,pos='v') for word in words]
+  print(data)
+
+
+print('lemmatizing data: ', lemmatize(text))
+***********************************************************************************************************************************************
+from nltk import pos_tag
+import nltk
+nltk.download('averaged_perceptron_tagger')
+from nltk import sent_tokenize
+from nltk import word_tokenize
+nltk.download('punkt')
+
+def posTag(text):
+  try:
+    words=nltk.word_tokenize(text)
+    data = nltk.pos_tag(words)
+    print(data)  
+  except Exception as e:
+    print(str(e))
+
+print('POS Tags: ')
+print(posTag(text))
+
+***********************************************************************************************************************************************
