@@ -1,0 +1,23 @@
+!pip install spacy
+!python -m spacy download('en_core_web_sm')
+
+import spacy
+from spacy import displacy
+from spacy import tokenizer
+nlp=spacy.load('en_core_web_sm')
+
+sentence="Hello my name is Donald. I live in Dubai"
+doc=nlp(sentence)
+
+for word in sentence:
+  ents = [(word.start_char,word,word.end_char,word.label)]
+  print(ents)
+
+displacy.render(doc,style='ent',jupyter=True)
+
+import nltk
+
+for sent in nltk.sent_tokenize(text):
+  for word_tagged in nltk.ne_chunk(nltk.pos_tag(nltk.word_tokenize(sent))): #ne_chunk returns words with confirmed labels
+    if hasattr(word_tagged,'label'):
+      print(word_tagged.label()," ".join(c[0] for c in word_tagged))
