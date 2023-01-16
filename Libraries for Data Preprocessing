@@ -1,0 +1,170 @@
+!pip install PyPDF2
+data=open('/content/mytextfile.txt','r')
+print(data.read())
+
+#read pdf
+import PyPDF2
+
+data=open('/content/Lorem Ipsum pdf.pdf','rb')
+reader = PyPDF2.PdfFileReader(data)
+print('file have: ',reader.getNumPages(),'pages')
+page = reader.getPage(0)
+print(page.extract_text())
+
+#read csv
+import pandas as pd
+import numpy as np
+data = pd.read_csv('/content/Reddit_Data.csv')
+print('file have rows and columns: ',data.shape)
+print('file shape',data.columns)
+print('file description: ', data.describe)
+
+data=pd.DataFrame(data=data)
+
+**************************************************************************************************************************************************
+
+!pip install nltk
+import nltk
+nltk.download('punkt')
+import string
+import inflect
+import re
+
+from nltk import sent_tokenize
+from nltk import word_tokenize
+
+comment_en = "Good Morning! Welcome to the NLP session. How are you doing? hi, hello."
+comment_hi = "Lorem Ipsum छपाई और अक्षर योजन उद्योग का एक साधारण डमी पाठ है. Lorem Ipsum सन १५०० के बाद से अभी तक इस उद्योग का मानक डमी पाठ मन गया, जब एक अज्ञात मुद्रक ने नमूना लेकर एक नमूना किताब बनाई."
+
+#print sentences as a list
+sentences_en=sent_tokenize(comment_en)
+sentences_hi=sent_tokenize(comment_hi)
+
+print(sentences_en)
+print(sentences_hi)
+
+#print word as a list
+word_en=word_tokenize(comment_en)
+word_hi=word_tokenize(comment_hi)
+
+print(word_en)
+print(word_hi)
+
+#print words one by one
+for word in word_en:
+  print(word)
+
+#print sentences one by one
+for sentence in sentences_hi:
+  print(sentence)
+
+
+*****************************************************************************************************************************************************************
+import string
+text="Christmas is an annual festival commemorating the birth of jesus christ! observed primarily on december 25 as a religious and cultural celebration among billions of people around the world. A feast central to the christian liturgical year, it is preceded by the season of advent or the nativity fast and initiates the season of christmastide, which historically in the west lasts twelve days and culminates on twelfth night."
+
+sentences = sent_tokenize(text)
+print('sentences',sentences)
+words=word_tokenize(text)
+print('work tokens:', words)
+
+uc_text="CHRISTMAS IS AN ANNUAL FESTIVAL COMMEMORATING THE BIRTH OF JESUS CHRIST, OBSERVED PRIMARILY ON DECEMBER 25 AS A RELIGIOUS AND CULTURAL CELEBRATION AMONG BILLIONS OF PEOPLE AROUND THE WORLD. A FEAST CENTRAL TO THE CHRISTIAN LITURGICAL YEAR, IT IS PRECEDED BY THE SEASON OF ADVENT OR THE NATIVITY FAST AND INITIATES THE SEASON OF CHRISTMASTIDE, WHICH HISTORICALLY IN THE WEST LASTS TWELVE DAYS AND CULMINATES ON TWELFTH NIGHT."
+
+#lower 
+def toLower(text):
+  return text.lower()
+
+def removeWS(text):
+  return " ".join(text.split())
+
+#removing white spaces
+textWS = 'hello   james darson         how are you doing?'
+print('removing white spaces from text: ')
+print(removeWS(textWS))
+
+print(textWS.split())
+print(word_tokenize(textWS))
+print("changing the case to lower")
+print(toLower(uc_text))
+
+*****************************************************************************************************************************************************************
+#remove punctuations
+
+def removePunct(text):
+  translator = str.maketrans(",","!",string.punctuation)
+  print('translator: ',translator)
+  return text.translate(translator)
+
+print('removing punctuations: ')
+text_WP=removePunct(text)
+print(text_WP)
+wtokens=word_tokenize(text_WP)
+print('tokens without punctuations')
+
+*****************************************************************************************************************************************************************
+import inflect
+p=inflect.engine()
+
+textWN= "get going 1 2 ka 4 or 4 2 ka 1 also 3456 will try to convert numbers to words, acdgfgfd1254@gmail.com"
+
+def numToWords(text):
+  newText=[]
+  for w in text.split():
+    if w.isdigit():
+      newText.append(p.number_to_words(w))
+    else:
+      newText.append(w)
+
+  tmpText=" ".join(newText)
+  return tmpText
+
+#number to words
+numToWords(textWN)
+
+print(wtokens)
+
+*****************************************************************************************************************************************************************
+#Remove stopwords
+
+from nltk.corpus import stopwords
+nltk.download('stopwords')
+
+stopwordsList = set(stopwords.words('english'))
+stopwordsList
+
+textWSP="Christmas is an annual festival commemorating the birth of jesus christ! observed primarily on december 25 as a religious and cultural celebration among billions of people around the world. A feast central to the christian liturgical year, it is preceded by the season of advent or the nativity fast and initiates the season of christmastide, which historically in the west lasts twelve days and culminates on twelfth night."
+
+wTokens=word_tokenize(textWSP)
+cleanText=[]
+
+
+def removeStopWords(text):
+  for w in text:
+    if w not in stopwordsList:
+      cleanText.append(w)
+  return cleanText
+
+removeStopWords(wTokens)
+*****************************************************************************************************************************************************************
+
+import re
+
+textHT= "<h2> this is html heading 2</h2> and <BR> for newline"
+
+def removeHTAGS(text):
+  pattern = re.compile('<.*?>')
+  return pattern.sub(r'',text)
+
+print(removeHTAGS(textHT))
+
+textURL = "welcome to the url string https://www.google.co.in/ and https://www.britannica.com/topic/Christmas after this"
+
+
+def removeURLs(text):
+  pattern=re.compile('https?://|S+|www\.\S+')
+  return pattern.sub(r'',text)
+
+print(removeURLs(textURL))
+
+*****************************************************************************************************************************************************************
+
