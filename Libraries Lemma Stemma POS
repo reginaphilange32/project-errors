@@ -46,6 +46,8 @@ from nltk import sent_tokenize
 from nltk import word_tokenize
 nltk.download('punkt')
 
+text = "I am reading the text book. He is playing the guitar. They are dancing" 
+
 def posTag(text):
   try:
     words=nltk.word_tokenize(text)
