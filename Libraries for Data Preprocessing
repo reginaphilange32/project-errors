@@ -33,7 +33,7 @@ import re
 from nltk import sent_tokenize
 from nltk import word_tokenize
 
-comment_en = "Good Morning! Welcome to the NLP session. How are you doing? hi, hello."
+comment_en = "Good Morning! Welcome to the jungle. How are you doing? hi, hello."
 comment_hi = "Lorem Ipsum छपाई और अक्षर योजन उद्योग का एक साधारण डमी पाठ है. Lorem Ipsum सन १५०० के बाद से अभी तक इस उद्योग का मानक डमी पाठ मन गया, जब एक अज्ञात मुद्रक ने नमूना लेकर एक नमूना किताब बनाई."
 
 #print sentences as a list
