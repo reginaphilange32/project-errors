@@ -1,0 +1,4 @@
+from nltk import FreqDist
+frequency_distribution = FreqDist(text8)
+print(frequency_distribution)
+frequency_distribution.most_common(20)
