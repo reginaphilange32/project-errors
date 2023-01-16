@@ -1,0 +1,25 @@
+!pip install BERTopic
+!pip install BERTopic[flair]
+!pip install BERTopic[spacy]
+!pip install BERTopic[use]
+!pip install BERTopic[Visualisation]
+!pip install BERTopic[genism]
+
+import pandas as pd
+import numpy as np
+from bertopic import BERTopic
+
+data = pd.read_csv('/content/tokyo_2020_tweets.csv')
+
+df = data[:5000]
+
+model = BERTopic(verbose=True)
+
+docs = df.text.to_list()
+
+topics,probabilities = model.fit_transform(docs)
+
+model.get_topic(1) #linebyline
+model.visualize_barchart()
+model.visualize_heatmap()
+model.visualize_topics()
